@@ -4,8 +4,6 @@ import {Device} from 'ionic-native';
 
 import {AzureService} from './../../providers/azureService';
 
-//import {Image} from './../../providers/image-provider/image';
-//import {ImageProvider} from './../../providers/image-provider/image-provider';
 
 @Page({
   templateUrl: 'build/pages/capture/capture.html',
@@ -15,6 +13,7 @@ export class CapturePage {
   fileUri: string;
   imageUrl: string;
   title: string;
+  imageString: string;
   base64Image: string;
   tag: string;
   tags: string[];
@@ -26,12 +25,14 @@ export class CapturePage {
   capturePhoto(){
     let options = { 
       quality: 50,
-      destinationType: Camera.DestinationType.DATA_URL
+      destinationType: Camera.DestinationType.DATA_URL,
+      encodingType: Camera.EncodingType.JPEG
     };
     
     Camera.getPicture(options).then((imageData) => {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
+    this.imageString = imageData
     //console.debug('imageData', imageData);
     //this.fileUri = imageData;
     this.base64Image = "data:image/jpeg;base64," + imageData;
@@ -39,11 +40,11 @@ export class CapturePage {
     }, (err) => {
     });
   };
-  uploadPhoto(){
+  uploadPhoto(){    
     let obj = {
       method: 'post',
       body: {
-        base64Image: this.base64Image,
+        imageString: this.imageString,
         title: this.title,
         tags: this.tags,
         uuid: Device.device.uuid
@@ -53,18 +54,9 @@ export class CapturePage {
     this.azureService.mobileClient.invokeApi('saveImage', obj).then(result => {
       console.debug('insert result', result);
       this.title = null;
+      this.imageString = null;
       this.base64Image = null;
       this.tags = null;
-    }, error => console.error(error));
-  };
-  uploadPhoto2(){
-    let obj = {
-      imageUrl: this.imageUrl,
-      title: this.title
-    }
-    let imgTable = this.azureService.mobileClient.getTable('images');
-    imgTable.insert(obj).then(result => {
-      console.debug('insert result', result);
     }, error => console.error(error));
   };
   removeTag(tag: string){

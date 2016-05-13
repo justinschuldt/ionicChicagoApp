@@ -21,13 +21,11 @@ export class ImageProvider {
      
     // don't have the data yet
     return new Promise<Image[]>(resolve => {
-      // var mobileAppsClient = new WindowsAzure.MobileServiceClient(
-      //   "http://localhost:3000"
-      // );
       let obj = {method: 'get'};
 
       this.azureService.mobileClient.invokeApi('getImages', obj).then(response => {
         console.debug('image table result: ', response.result);
+        this.data = response.result;
         resolve(response.result);
       });
       

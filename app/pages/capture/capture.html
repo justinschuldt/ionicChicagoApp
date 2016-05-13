@@ -12,7 +12,7 @@
   <button (click)="capturePhoto()">capture</button>
   <button *ngIf="base64Image && title" (click)="uploadPhoto()">upload</button>
 
-    <ion-list>
+  <ion-list>
     <ion-item>
       <ion-input type="text" placeholder="title" [(ngModel)]="title"></ion-input>
     </ion-item>
