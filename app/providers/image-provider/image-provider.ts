@@ -2,37 +2,35 @@ import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the ImageProvider provider.
+import {Image} from './image';
+import {AzureService} from './../azureService';
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class ImageProvider {
-  data: any = null;
+  data: Array<Image>;
 
-  constructor(public http: Http) {}
+  constructor(public http: Http,
+  public azureService: AzureService) {}
 
   load() {
     if (this.data) {
+      //console.debug('this.data: ', this.data);
       // already loaded data
-      return Promise.resolve(this.data);
+      return Promise.resolve<Image[]>(this.data);
     }
-
+     
     // don't have the data yet
-    return new Promise(resolve => {
-      // We're using Angular Http provider to request the data,
-      // then on the response it'll map the JSON data to a parsed JS object.
-      // Next we process the data and resolve the promise with the new data.
-      this.http.get('path/to/data.json')
-        .map(res => res.json())
-        .subscribe(data => {
-          // we've got back the raw data, now generate the core schedule data
-          // and save the data for later reference
-          this.data = data;
-          resolve(this.data);
-        });
+    return new Promise<Image[]>(resolve => {
+      // var mobileAppsClient = new WindowsAzure.MobileServiceClient(
+      //   "http://localhost:3000"
+      // );
+      let obj = {method: 'get'};
+
+      this.azureService.mobileClient.invokeApi('getImages', obj).then(response => {
+        console.debug('image table result: ', response.result);
+        resolve(response.result);
+      });
+      
     });
   }
 }
