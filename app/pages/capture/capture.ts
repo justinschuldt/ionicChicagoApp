@@ -41,13 +41,20 @@ export class CapturePage {
   };
   uploadPhoto(){
     let obj = {
-      base64Image: this.base64Image,
-      title: this.title,
-      tags: this.tags,
-      uuid: Device.device.uuid
+      method: 'post',
+      body: {
+        base64Image: this.base64Image,
+        title: this.title,
+        tags: this.tags,
+        uuid: Device.device.uuid
+      }
     }
+    
     this.azureService.mobileClient.invokeApi('saveImage', obj).then(result => {
       console.debug('insert result', result);
+      this.title = null;
+      this.base64Image = null;
+      this.tags = null;
     }, error => console.error(error));
   };
   uploadPhoto2(){
