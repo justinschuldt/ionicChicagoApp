@@ -8,8 +8,8 @@ export class AzureService {
     thisCurrentUser: any;
     constructor () {
         // TODO restore the client's currentUser from local storage
-         this.mobileClient = new WindowsAzure.MobileServiceClient("http://localhost:3000/");
-        //this.mobileClient = new WindowsAzure.MobileServiceClient("http://ionic-chicago.azurewebsites.net/");
+         //this.mobileClient = new WindowsAzure.MobileServiceClient("http://localhost:3000/");
+        this.mobileClient = new WindowsAzure.MobileServiceClient("http://ionic-chicago.azurewebsites.net/");
         
     }
     setCurrentUser(user: any){

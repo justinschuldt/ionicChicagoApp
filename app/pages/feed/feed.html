@@ -23,10 +23,10 @@
                     {{image.title}}
                 </ion-card-title>
                 <p *ngFor="#tag of image.tags">
-                  {{tags.name}}
+                  {{tag.tag}}
                 </p>
                 <button secondary block (click)="goToDetail(image)">
-                    <ion-icon name="checkbox-outline"></ion-icon> Connect
+                    <ion-icon name="checkbox-outline"></ion-icon> View
                 </button>
             </ion-card-content>
         </ion-card>
