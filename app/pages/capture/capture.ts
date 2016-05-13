@@ -32,8 +32,8 @@ export class CapturePage {
     Camera.getPicture(options).then((imageData) => {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
-    console.debug('imageData', imageData);
-    this.fileUri = imageData;
+    //console.debug('imageData', imageData);
+    //this.fileUri = imageData;
     this.base64Image = "data:image/jpeg;base64," + imageData;
     //console.debug('base64Image: ', base64Image);
     }, (err) => {

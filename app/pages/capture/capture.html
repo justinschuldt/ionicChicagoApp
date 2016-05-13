@@ -30,6 +30,6 @@
   
  
   
-  <img src="{{fileUri}}">
-  <button *ngIf="fireUri" (click)="uploadPhoto()">upload</button>
+  <ion-img [src]="base64Image"></ion-img>
+  <button *ngIf="base64Image" (click)="uploadPhoto()">upload</button>
 </ion-content>
