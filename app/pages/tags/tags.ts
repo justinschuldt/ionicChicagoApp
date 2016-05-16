@@ -48,15 +48,20 @@ export class TagsPage {
     });
 
     push.on('registration', (data) => {
+        console.log('registration data: ', data);
         console.log(data.registrationId);
+        // req.body.gcmRegistrationId, req.body.tags, req.body.template, req.body.options
         let obj = {
             method: 'post',
             body: {
-                tag: tag
+                gcmRegistrationId: data.registrationId,
+                tag: tag.id
             }
         };
-        this.azureService.mobileClient.invokeApi('registerNotificationTag', obj).then(response =>{
+        this.azureService.mobileClient.invokeApi('gcmRegistration', obj).then(response =>{
             console.debug('push register response: ', response.result);
+            this.tags.splice(this.tags.indexOf(tag), 1);
+            this.registeredTags.push(tag);
         })
     });
 
@@ -73,6 +78,10 @@ export class TagsPage {
         console.log(e.message);
     });
     
+  }
+  unregisterForNotification(tag: Tag){
+      this.registeredTags.splice(this.registeredTags.indexOf(tag), 1);
+      this.tags.push(tag);
   }
 }
 

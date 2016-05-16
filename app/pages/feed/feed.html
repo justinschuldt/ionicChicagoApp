@@ -15,9 +15,9 @@
   </ion-refresher>
   
   
-    <ion-list [virtualScroll]="images">
-        <ion-card *virtualItem="#image">
-            <ion-img [src]="image.imageUrl"></ion-img>
+    <ion-list>
+        <ion-card *ngFor="#image of images">
+            <img [src]="image.imageUrl" />
             <ion-card-content>
                 <ion-card-title>
                     {{image.title}}

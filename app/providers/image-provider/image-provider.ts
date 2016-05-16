@@ -13,16 +13,9 @@ export class ImageProvider {
   public azureService: AzureService) {}
 
   load() {
-    if (this.data) {
-      //console.debug('this.data: ', this.data);
-      // already loaded data
-      return Promise.resolve<Image[]>(this.data);
-    }
-     
-    // don't have the data yet
+
     return new Promise<Image[]>(resolve => {
       let obj = {method: 'get'};
-
       this.azureService.mobileClient.invokeApi('getImages', obj).then(response => {
         console.debug('image table result: ', response.result);
         this.data = response.result;
@@ -31,5 +24,15 @@ export class ImageProvider {
       
     });
   }
+  getById(id: string){
+    return new Promise<Image>(resolve => {
+      this.load().then(result => {
+      let image = result.filter(image => image.id === id)[0];
+      resolve(image);
+      })
+    })
+    
+  }
+  
 }
 

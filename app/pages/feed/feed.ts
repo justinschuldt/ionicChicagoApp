@@ -25,7 +25,7 @@ export class FeedPage {
 
 
     goToDetail(image: Image) {
-        this.nav.push(ImagePage, {ImagesId: image.id});
+        this.nav.push(ImagePage, {imagesId: image.id});
     }
     
     doRefresh(refresher) {

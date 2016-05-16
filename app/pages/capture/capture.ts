@@ -1,6 +1,8 @@
-import {Page, NavController} from 'ionic-angular';
+import {Page, Alert, NavController} from 'ionic-angular';
 import {Camera} from 'ionic-native';
 import {Device} from 'ionic-native';
+
+import {FeedPage} from '../feed/feed';
 
 import {AzureService} from './../../providers/azureService';
 
@@ -56,7 +58,14 @@ export class CapturePage {
       this.title = null;
       this.imageString = null;
       this.base64Image = null;
-      this.tags = null;
+      this.tags = [];
+      let alert = Alert.create({
+        title: 'Success!',
+        subTitle: 'Your photo has been uploaded!',
+        buttons: ['OK']
+      });
+      this.nav.present(alert);
+      this.nav.push(FeedPage);
     }, error => console.error(error));
   };
   removeTag(tag: string){

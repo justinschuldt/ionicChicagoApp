@@ -9,10 +9,10 @@ export class AzureService {
     mobileClient: any
     thisCurrentUser: any;
     constructor () {
-        this.mobileClient = new WindowsAzure.MobileServiceClient("http://localhost:3000/");
-        //this.mobileClient = new WindowsAzure.MobileServiceClient("http://ionic-chicago.azurewebsites.net/");
+        //this.mobileClient = new WindowsAzure.MobileServiceClient("http://localhost:3000/");
+        this.mobileClient = new WindowsAzure.MobileServiceClient("http://ionic-chicago.azurewebsites.net/");
         
-        this.token = localStorage.getItem('token');
+        // this.token = localStorage.getItem('token');
         if (!this.token) {
             this.getToken()
         }
@@ -27,8 +27,9 @@ export class AzureService {
             }
         }
         this.mobileClient.invokeApi('getToken', obj).then(response => {
+            this.token = response.result.token;
             localStorage.setItem('token', response.result.token);
-            this.setCurrentUser(response.result);
+            this.setCurrentUser(response.result.token);
         });
     }
     

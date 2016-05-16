@@ -10,4 +10,16 @@
 
 <ion-content padding class="image">
   
+        <ion-card *ngIf="image">
+            <img [src]="image.imageUrl" />
+            <ion-card-content>
+                <ion-card-title>
+                    {{image.title}}
+                </ion-card-title>
+                <p *ngFor="#tag of image.tags">
+                  {{tag.tag}}
+                </p>
+            </ion-card-content>
+        </ion-card>
+  
 </ion-content>
