@@ -10,7 +10,7 @@ export class AzureService {
     thisCurrentUser: any;
     constructor () {
         //this.mobileClient = new WindowsAzure.MobileServiceClient("http://localhost:3000/");
-        this.mobileClient = new WindowsAzure.MobileServiceClient("http://ionic-chicago.azurewebsites.net/");
+        this.mobileClient = new WindowsAzure.MobileServiceClient("https://ionic-chicago.azurewebsites.net/");
         
         // this.token = localStorage.getItem('token');
         if (!this.token) {
