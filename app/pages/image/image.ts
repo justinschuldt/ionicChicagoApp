@@ -10,20 +10,24 @@ import {AzureService} from './../../providers/azureService';
 })
 export class ImagePage {
   image: Image;
+  
   constructor(
     public nav: NavController,
     public navParams: NavParams,
     public imageProvider: ImageProvider) {
+      // this initalizes the navParams for us
       this.navParams = navParams;
     }
   
   ngOnInit() {
+    // We are grabbing the 'imagesId' property of the navParams object
+    // that was passed in when this page was pushed to the nav stack
+    // in feed.ts
     let id = this.navParams.get('imagesId');
-    console.debug('image.ts ngOnInit() imagesId: ', id);
     this.imageProvider.getById(id)
       .then(image => {
-        this.image = image;
-        console.debug('image: ', image);         
+        // Assign the result to a class property
+        this.image = image;   
     });
     
   }
