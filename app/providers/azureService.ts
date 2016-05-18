@@ -28,19 +28,16 @@ export class AzureService {
         }
         this.mobileClient.invokeApi('getToken', obj).then(response => {
             this.token = response.result.token;
-            localStorage.setItem('token', response.result.token);
-            this.setCurrentUser(response.result.token);
+            localStorage.setItem('token', this.token);
+            this.setCurrentUser(this.token);
         });
     }
-    
 
     setCurrentUser(token: string){
-        console.debug('token: ', token);
+        //console.debug('token: ', token);
         this.mobileClient.currentUser = {
             mobileServiceAuthenticationToken: token
-        }
-        this.mobileClient.currentUser.mobileServiceAuthenticationToken = token;
-        
+        }        
     }
     getCurrentUser(){
         let currentUser = this.mobileClient.currentUser;
