@@ -6,12 +6,12 @@ import {TagsPage} from '../tags/tags';
 
 
 @Page({
-  templateUrl: 'build/pages/tabs/tabs.html'
+    templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
-  // this tells the tabs component which Pages
-  // should be each tab's root Page
-  tab1Root: any = CapturePage;
-  tab2Root: any = FeedPage;
-  tab3Root: any = TagsPage;
+    // this tells the tabs component which Pages
+    // should be each tab's root Page
+    tab1Root: any = CapturePage;
+    tab2Root: any = FeedPage;
+    tab3Root: any = TagsPage;
 }
