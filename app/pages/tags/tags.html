@@ -14,11 +14,28 @@
   </ion-refresher>
   <!--<button (click)="tags.push(tag); tag = null">Add Tag</button>-->
     
-  
+<!--  
   <ion-list>
       <button ion-item detail-none *ngFor="#tag of registeredTags" (click)="unRegisterForNotification(tag)">{{tag.tag}} <ion-icon name="close"></ion-icon></button>
   </ion-list>
   <ion-list>
       <button ion-item detail-none *ngFor="#tag of tags" (click)="registerForNotification(tag)">{{tag.tag}} <ion-icon name="add"></ion-icon></button>
-  </ion-list>
+  </ion-list>-->
+  
+  <ion-item-group>
+
+    <ion-item-divider light>Registered for notifications:</ion-item-divider>
+    <ion-item *ngFor="#tag of registeredTags" (click)="unRegisterForNotification(tag)">
+      <ion-icon name="close" item-left></ion-icon>
+      {{tag.tag}}
+    </ion-item>
+
+
+    <ion-item-divider light>Availible for notifications:</ion-item-divider>
+    <ion-item *ngFor="#tag of tags" (click)="registerForNotification(tag)">
+      <ion-icon name="add" item-left></ion-icon>
+      {{tag.tag}}
+    </ion-item>
+
+  </ion-item-group>
 </ion-content>
