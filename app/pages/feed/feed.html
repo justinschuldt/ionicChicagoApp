@@ -1,14 +1,14 @@
 <ion-navbar *navbar>
-  <ion-title>feed</ion-title>
+    <ion-title>feed</ion-title>
 </ion-navbar>
 
 
 <ion-content padding class="feed">
-   <ion-refresher (refresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  
-  
+    <ion-refresher (refresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    
+    
     <ion-list>
         <ion-card *ngFor="#image of images">
             <img [src]="image.imageUrl" />
@@ -17,7 +17,7 @@
                     {{image.title}}
                 </ion-card-title>
                 <p *ngFor="#tag of image.tags">
-                  {{tag.tag}}
+                    {{tag.tag}}
                 </p>
                 <button secondary block (click)="goToDetail(image)">
                     <ion-icon name="checkbox-outline"></ion-icon> View

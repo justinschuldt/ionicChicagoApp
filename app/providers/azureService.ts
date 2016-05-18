@@ -17,7 +17,7 @@ export class AzureService {
             this.getToken()
         }
         else
-            this.setCurrentUser(this.token);
+        this.setCurrentUser(this.token);
     }
     getToken(){
         let obj = {
@@ -32,7 +32,7 @@ export class AzureService {
             this.setCurrentUser(this.token);
         });
     }
-
+    
     setCurrentUser(token: string){
         //console.debug('token: ', token);
         this.mobileClient.currentUser = {
@@ -43,5 +43,5 @@ export class AzureService {
         let currentUser = this.mobileClient.currentUser;
         return currentUser;
     }
-
+    
 }

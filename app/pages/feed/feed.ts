@@ -13,16 +13,16 @@ import {ImageProvider} from './../../providers/image-provider/image-provider';
 import {AzureService} from './../../providers/azureService';
 
 @Page({
-  templateUrl: 'build/pages/feed/feed.html',
-  providers: [AzureService, ImageProvider]
+    templateUrl: 'build/pages/feed/feed.html',
+    providers: [AzureService, ImageProvider]
 })
 
 export class FeedPage {
-  images: Image[];
-  tabsPage: any;
-  constructor(
-    public nav: NavController,
-    public imageProvider: ImageProvider
+    images: Image[];
+    tabsPage: any;
+    constructor(
+        public nav: NavController,
+        public imageProvider: ImageProvider
     ) {}
     
     // This method is called only the first time the page is requested.
@@ -32,7 +32,7 @@ export class FeedPage {
             this.images = images;
         });
     }
-
+    
     // This method takes an input of an Image object, that we imported above.
     goToDetail(image: Image) {
         // The ImagePage is pushed to the nav stack along with a parameter
@@ -41,11 +41,11 @@ export class FeedPage {
     
     // This method receives an $event object from the click directive that calls it
     doRefresh(refresher) {
-       this.imageProvider.load().then(images => {
+        this.imageProvider.load().then(images => {
             this.images = images;
             // Now that we have new images, we can let the directive know we're done
             refresher.complete();
         });
-      
+        
     }
 }

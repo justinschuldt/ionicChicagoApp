@@ -1,26 +1,26 @@
 <ion-navbar *navbar>
-  <ion-title>tags</ion-title>
+    <ion-title>tags</ion-title>
 </ion-navbar>
 
 <ion-content padding class="tags">
-  <ion-refresher (refresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <ion-item-group>
-
-    <ion-item-divider light>Registered for notifications:</ion-item-divider>
-    <ion-item *ngFor="#tag of registeredTags" (click)="unRegisterForNotification(tag)">
-      <ion-icon name="close" item-left></ion-icon>
-      {{tag.tag}}
-    </ion-item>
-
-
-    <ion-item-divider light>Availible for notifications:</ion-item-divider>
-    <ion-item *ngFor="#tag of tags" (click)="registerForNotification(tag)">
-      <ion-icon name="add" item-left></ion-icon>
-      {{tag.tag}}
-    </ion-item>
-
-  </ion-item-group>
+    <ion-refresher (refresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    
+    <ion-item-group>
+        
+        <ion-item-divider light>Registered for notifications:</ion-item-divider>
+        <ion-item *ngFor="#tag of registeredTags" (click)="unRegisterForNotification(tag)">
+            <ion-icon name="close" item-left></ion-icon>
+            {{tag.tag}}
+        </ion-item>
+        
+        
+        <ion-item-divider light>Availible for notifications:</ion-item-divider>
+        <ion-item *ngFor="#tag of tags" (click)="registerForNotification(tag)">
+            <ion-icon name="add" item-left></ion-icon>
+            {{tag.tag}}
+        </ion-item>
+        
+    </ion-item-group>
 </ion-content>
